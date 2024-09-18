@@ -8,9 +8,9 @@ def show_main(request):
     product_entries = ProductEntry.objects.all()
 
     context = {
-        'name': 'Pak Bepe',
-        'class': 'PBP D',
-        'npm': '2306123456',
+        'name': 'Yovan Raju',
+        'class': 'PBP C',
+        'npm': '2306275512',
         'product_entries': product_entries
     }
 
