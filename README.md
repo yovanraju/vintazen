@@ -10,6 +10,7 @@
 
 [![link](https://img.shields.io/badge/Link_di_Samping-Klik_di_Sini-red?labelColor=blue)](http://yovan-raju-vintazen.pbp.cs.ui.ac.id/)
 
+# TUGAS 1
 ## JAWABAN
 
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
@@ -76,3 +77,125 @@
 <div style="text-align: justify">
     Dengan django memungkinkan progammer dapat mengakses database menggunakan objek Python, itu membuat Django dapat disebut dengan ORM. Dalam Django mode adalah representasi dari tabel dalam basis data dan setiap model tersebut tertulis sebagai kelas Python. ORM ini memungkinkan pengembang untuk melakukan operasi Create, Read, Update, Delete pada data di database dengan menggunakan bahasa pemrograman Python.Dengan ORM  membuat pengelolaan database menjadi lebih intuitif dan terintegrasi langsung dengan kode, tanpa perlu menulis SQL manual. Dengan alasan itulah mengapa Django dapat disebut sebagai ORM.
 </div>
+
+# TUGAS 2
+
+## Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
+
+Data delivery sangat penting karena dalam setiap platform baik web atau mobile, terdapat kebutuhan untuk mengirim, menerima, dan menampilkan data antara server dan pengguna. Pengiriman data ini memungkinkan aplikasi berfungsi sesuai harapan, termasuk fitur seperti login, registrasi, dan penyimpanan data secara real-time. Tanpa data delivery yang efisien, platform akan mengalami kesulitan dalam memberikan kenyamanan bagi pengguna.
+
+## Menurutmu, mana yang lebih baik antara XML dan JSON? Mengapa JSON lebih populer dibandingkan XML?
+
+JSON lebih baik dibandingkan XML karena formatnya yang lebih sederhana. JSON memiliki sintaks yang lebih mudah dipahami serta mendukung tipe data seperti string, number, boolean, dan array. JSON juga sangat kompatibel dengan JavaScript, yang merupakan bahasa pemrograman yang banyak digunakan dalam pengembangan aplikasi web. Hal ini membuat JSON lebih cepat dan lebih efisien dalam pertukaran data sehingga membuat JSON lebih populer dibangingkan XML
+
+## Jelaskan fungsi dari method is_valid() pada form Django dan mengapa kita membutuhkan method tersebut?
+
+Method is_valid() dalam form Django digunakan untuk memeriksa apakah data yang di-input oleh pengguna sesuai dengan aturan validasi yang sudah kita tetapkan. Method ini penting karena memastikan bahwa data yang dikirimkan ke database benar dan sesuai format, sehingga mencegah kesalahan input dan melindungi aplikasi dari kemungkinan terjadinya error.
+
+## Mengapa kita membutuhkan csrf_token saat membuat form di Django? Apa yang dapat terjadi jika kita tidak menambahkan csrf_token pada form Django? Bagaimana hal tersebut dapat dimanfaatkan oleh penyerang?
+
+csrf_token berfungsi untuk melindungi aplikasi dari serangan CSRF (Cross-Site Request Forgery), yang merupakan jenis serangan di mana penyerang bisa membuat pengguna yang sudah login melakukan tindakan tanpa sepengetahuannya. Jika form di Django tidak menggunakan csrf_token, penyerang dapat memanfaatkan celah ini untuk melakukan perubahan data tanpa otorisasi yang sah.
+
+## Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
+
+1. ###### Membuat Form Input untuk Menambahkan Objek Model
+
+Langkah pertama, saya membuat berkas `forms.py` di dalam direktori `main`. Pada berkas tersebut, saya mendefinisikan form untuk model `Product` dengan menggunakan `ModelForm` dari Django, serta mengimpor model `Product`. Berikut adalah isi kode di dalam `forms.py`:
+
+    from django.forms import ModelForm
+    from main.models import ProductEntry
+
+    class ProductEntryForm(ModelForm):
+    class Meta:
+        model = ProductEntry
+        fields = ["name", "price", "description"]
+
+Setelah itu, saya membuat fungsi `create_product_entry` di dalam `views.py` yang berfungsi untuk menangani permintaan (request) dari form input. Fungsi ini memvalidasi data yang dikirimkan oleh pengguna, dan jika valid, data tersebut akan disimpan ke dalam database. Berikut adalah kodenya:
+
+    from django.shortcuts import render, redirect
+    from main.forms import ProductForm
+
+    def create_product_entry(request):
+    form = ProductForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return redirect('main:show_main')
+
+    context = {'form': form}
+    return render(request, "create_product_entry.html", context)
+
+Kemudian, saya membuat template HTML bernama `create_product_entry.html` di dalam direktori `main/templates`. Template ini menampilkan form yang telah dibuat dan menyediakan tombol untuk mengirimkan data:
+
+    {% extends 'base.html' %} 
+    {% block content %}
+    <h1>Add New Product Entry</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+            <tr>
+                <td></td>
+                <td>
+                    <input type="submit" value="Add Product Entry" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    {% endblock %}
+
+Selanjutnya, saya menambahkan rute URL di dalam berkas `urls.py` untuk menghubungkan halaman input produk baru dengan fungsi yang telah dibuat sebelumnya:
+
+    from main.views import create_product_entry
+    urlpatterns = [...
+        path('create-product-entry', create_product_entry, name='create_product_entry'),
+        ...
+    ]
+
+Menambahkan Fungsi untuk Menampilkan Data dalam Format XML, JSON, dan Berdasarkan ID
+
+Pada tahap berikutnya, saya menambahkan fungsi untuk menampilkan data dalam format XML dan JSON, serta untuk menampilkan data berdasarkan ID. Saya mengimpor modul yang diperlukan di dalam `views.py`:
+
+    from django.http import HttpResponse
+    from django.core import serializers
+
+Untuk menampilkan data dalam format XML, saya membuat fungsi show_xml yang mengambil seluruh data produk dan mengembalikannya dalam format XML:
+
+    def show_xml(request):
+        data = Product.objects.all()
+        return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+Selanjutnya, untuk menampilkan data dalam format JSON, saya menambahkan fungsi serupa:
+
+    def show_json(request):
+        data = Product.objects.all()
+        return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+Untuk menampilkan data berdasarkan ID, saya membuat dua fungsi tambahan untuk masing-masing format, yaitu XML dan JSON. Fungsi-fungsi ini memfilter data berdasarkan ID tertentu:
+
+    def show_xml_by_id(request, id):
+        data = Product.objects.filter(pk=id)
+        return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+    def show_json_by_id(request, id):
+        data = Product.objects.filter(pk=id)
+        return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+Terakhir, saya menambahkan rute untuk masing-masing fungsi ini di dalam berkas urls.py:
+
+    from main.views import show_xml, show_json, show_xml_by_id, show_json_by_id
+
+    urlpatterns = [
+        path('xml/', show_xml, name='show_xml'),
+        path('json/', show_json, name='show_json'),
+        path('xml/<str:id>/', show_xml_by_id, name='show_xml_by_id'),
+        path('json/<str:id>/', show_json_by_id, name='show_json_by_id'),
+    ]
+
+Dengan langkah-langkah di atas, saya berhasil membuat form input, menampilkan data dalam format XML dan JSON, serta menampilkan data berdasarkan ID. Proses ini memastikan pengguna dapat menambah dan melihat data melalui antarmuka yang interaktif.
+
+### Postman ScreenShot:
+
+![alt text](<Screenshot 2024-09-18 104710.png>) ![alt text](<Screenshot 2024-09-18 104902.png>) ![alt text](<Screenshot 2024-09-18 104828.png>) ![alt text](<Screenshot 2024-09-18 104753.png>)
