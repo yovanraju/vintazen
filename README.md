@@ -10,7 +10,7 @@
 
 [![link](https://img.shields.io/badge/Link_di_Samping-Klik_di_Sini-red?labelColor=blue)](http://yovan-raju-vintazen.pbp.cs.ui.ac.id/)
 
-# TUGAS 1
+# TUGAS 2
 ## JAWABAN
 
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
@@ -78,7 +78,7 @@
     Dengan django memungkinkan progammer dapat mengakses database menggunakan objek Python, itu membuat Django dapat disebut dengan ORM. Dalam Django mode adalah representasi dari tabel dalam basis data dan setiap model tersebut tertulis sebagai kelas Python. ORM ini memungkinkan pengembang untuk melakukan operasi Create, Read, Update, Delete pada data di database dengan menggunakan bahasa pemrograman Python.Dengan ORM  membuat pengelolaan database menjadi lebih intuitif dan terintegrasi langsung dengan kode, tanpa perlu menulis SQL manual. Dengan alasan itulah mengapa Django dapat disebut sebagai ORM.
 </div>
 
-# TUGAS 2
+# TUGAS 3
 
 ## Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
 
@@ -201,7 +201,7 @@ Dengan langkah-langkah di atas, saya berhasil membuat form input, menampilkan da
 
 ![alt text](<Screenshot 2024-09-18 104710.png>) ![alt text](<Screenshot 2024-09-18 104902.png>) ![alt text](<Screenshot 2024-09-18 104828.png>) ![alt text](<Screenshot 2024-09-18 104753.png>)
 
-# TUGAS 3
+# TUGAS 4
 
 ## Apa perbedaan antara `HttpResponseRedirect()` dan `redirect()`
 
