@@ -201,7 +201,7 @@ Dengan langkah-langkah di atas, saya berhasil membuat form input, menampilkan da
 
 ![alt text](<Screenshot 2024-09-18 104710.png>) ![alt text](<Screenshot 2024-09-18 104902.png>) ![alt text](<Screenshot 2024-09-18 104828.png>) ![alt text](<Screenshot 2024-09-18 104753.png>)
 
-# TUGAS 2
+# TUGAS 3
 
 ## Apa perbedaan antara `HttpResponseRedirect()` dan `redirect()`
 
