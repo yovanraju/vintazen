@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect   
+import datetime
+from django.shortcuts import render, redirect, reverse
 from main.forms import ProductEntryForm
 from main.models import ProductEntry
 from django.http import HttpResponse
@@ -8,35 +9,33 @@ from django.contrib.auth import authenticate, login
 from django.contrib import messages
 from django.contrib.auth import logout  
 from django.contrib.auth.decorators import login_required
-import datetime
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseRedirect
 from django.urls import reverse
 
 @login_required(login_url='/login') 
 def show_main(request):
+    # Mengambil semua entri produk yang dimiliki oleh pengguna yang sedang login
     product_entries = ProductEntry.objects.filter(user=request.user)
-
     context = {
-    'name': request.user.username,
-    'class': 'PBP C',
-    'npm': '2306275512',
-    'product_entries': product_entries,
-    'last_login': request.COOKIES['last_login'],
+        'name': request.user.username,
+        'class': 'PBP C',
+        'npm': '2306275512',
+        'product_entries': product_entries,
+        'last_login': request.COOKIES['last_login'],
     }
-
     return render(request, "main.html", context)
 
 def create_product_entry(request):
-    form = ProductEntryForm(request.POST or None)
-
-    if form.is_valid() and request.method == "POST":
-        product_entry = form.save(commit=False)
-        product_entry.user = request.user
-        product_entry.save()
-        return redirect('main:show_main')
-
-    context = {'form': form}
-    return render(request, "create_product_entry.html", context)
+    if request.method == 'POST':
+        form = ProductEntryForm(request.POST, request.FILES)
+        if form.is_valid():
+            product_entry = form.save(commit=False)
+            product_entry.user = request.user
+            product_entry.save()
+            return redirect('main:show_main')
+    else:
+        form = ProductEntryForm()
+    return render(request, "create_product_entry.html", {'form': form})
 
 def show_xml(request):
     data = ProductEntry.objects.all()
@@ -87,3 +86,23 @@ def logout_user(request):
     response = HttpResponseRedirect(reverse('main:login'))
     response.delete_cookie('last_login')
     return response
+
+def edit_product(request, id):
+    # Mengambil objek produk berdasarkan id
+    product = ProductEntry.objects.get(pk=id)
+    # Membuat form dengan instance produk yang akan diedit
+    form = ProductEntryForm(request.POST or None, request.FILES or None, instance=product)
+    if form.is_valid() and request.method == "POST":
+        # Menyimpan perubahan jika form valid dan metode request adalah POST
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+    # Menampilkan form edit jika metode request bukan POST atau form tidak valid
+    return render(request, "edit_product.html", {'form': form})
+
+def delete_product(request, id):
+    # Mengambil objek produk berdasarkan id
+    product = ProductEntry.objects.get(pk = id)
+    # Menghapus produk dari database
+    product.delete()
+    # Kembali ke halaman utama setelah penghapusan
+    return HttpResponseRedirect(reverse('main:show_main'))

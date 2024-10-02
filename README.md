@@ -423,6 +423,115 @@ Django mengingat pengguna yang telah login dengan session. Jadi saat pengguna lo
                 response.delete_cookie('last_login')
                 return response
 
+# Tugas 5
+
+###### Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
+Ketika elemen HTML memiliki beberapa CSS selector, aturan yang diterapkan bergantung pada spesifisitas dan urutan penulisan CSS. Berikut urutan prioritas dari yang terendah hingga tertinggi:
+
+1. Selector Elemen dan Pseudo-elemen: Memiliki spesifisitas terendah, contoh: `div`, `p`, `::before`.
+2. Kelas, Pseudo-class, dan Atribut: Lebih spesifik daripada selector elemen, contoh: `.class`, `:hover`, `[type="text"]`.
+3. ID Selector: Memiliki nilai spesifisitas yang lebih tinggi, contoh: `#myId`.
+4. Inline Styles: CSS yang ditulis langsung dalam elemen HTML memiliki prioritas tertinggi, contoh: `<div style="color: red;">`.
+5. `!important`: CSS dengan `!important` akan menimpa semua aturan, kecuali jika ada selector lain yang juga menggunakan `!important`. Dalam kasus ini, aturan dengan spesifisitas tertinggi akan diterapkan.
+
+###### Mengapa responsive design menjadi konsep yang penting dalam pengembangan aplikasi web? Berikan contoh aplikasi yang sudah dan belum menerapkan responsive design!
+Responsive design adalah pendekatan untuk memastikan aplikasi web tampil optimal di berbagai perangkat dan ukuran layar. Ini penting karena:
+
+1. Penggunaan Perangkat Mobile: Sebagian besar pengguna mengakses internet melalui perangkat mobile. Jika aplikasi tidak responsif, pengguna mungkin akan kesulitan mengaksesnya.
+2. SEO: Google memprioritaskan situs yang responsif dalam hasil pencarian.
+3. Pengalaman Pengguna: Desain responsif memastikan aplikasi tetap mudah digunakan, terlepas dari ukuran layar.
+
+Contoh Aplikasi yang Menerapkan Responsive Design:
+
+- Spotify Web: Aplikasi ini memastikan pengalaman yang konsisten di berbagai perangkat, baik desktop maupun mobile.
+- Airbnb: Layout aplikasi yang menyesuaikan dengan ukuran layar, menyederhanakan navigasi dan konten.
+
+Contoh Aplikasi yang Tidak Menerapkan Responsive Design:
+
+- Old Reddit: Sebagian halaman lama Reddit masih belum responsif, membuat tampilan di perangkat mobile tidak optimal.
+
+###### Jelaskan perbedaan antara margin, border, dan padding, serta cara untuk mengimplementasikan ketiga hal tersebut!
+
+- Margin: Ruang di luar elemen, antara elemen tersebut dan elemen lain.
+
+    Implementasi:
+
+        .element {
+        margin: 20px;
+        }
+
+- Border: Garis yang mengelilingi elemen.
+
+    Implementasi:
+
+        .element {
+        border: 2px solid #000;
+        }
+
+- Padding: Ruang di dalam elemen, antara konten dan border elemen tersebut.
+
+    Implementasi:
+
+        .element {
+        padding: 15px;
+        }
+
+###### Jelaskan konsep flex box dan grid layout beserta kegunaannya!
+
+1. Flexbox: Layout satu dimensi yang mengatur elemen dalam baris atau kolom, ideal untuk menyusun item dalam satu arah.
+
+    - Kegunaan: Membuat layout seperti navbar, footer, dan card layout yang fleksibel.
+
+    - Contoh:
+
+            .container {
+            display: flex;
+            justify-content: space-between;
+            }
+2. Grid Layout: Layout dua dimensi yang mengatur elemen dalam baris dan kolom secara bersamaan.
+
+    - Kegunaan: Membuat layout yang lebih kompleks seperti galeri gambar, dashboard, atau layout halaman utama.
+
+    - Contoh:
+
+            .container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-gap: 10px;
+            }
+
+###### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step!
+
+1. Untuk halaman login saya membuat seperti pada gambar dibawah ini
+![alt text](127.0.0.1_8000_login_.png)
+![alt text](<127.0.0.1_8000_login_(iPhone XR).png>)
+jadi saya membuat logo dan mengatur posisi dari form login untuk berada pada bagian tengah dan mengatur warna dari background dan font. Merubah warna dari button menjadi kuning dan mengatur posisi dari textfield nya agar berada di tengah juga. Menamahkan tautan registrasi dengan warna kuning.
+
+Untuk halaman register saya membuat seperti pada gambar dibawah ini
+![alt text](127.0.0.1_8000_register_.png)
+![alt text](<127.0.0.1_8000_register_(iPhone XR).png>)
+jadi saya membuat logo dan mengatur posisi dari form register untuk berada pada bagian tengah dan mengatur warna dari background dan font. Merubah warna dari button menjadi kuning dan mengatur posisi dari textfield nya agar berada di tengah juga. Menamahkan tautan login dengan warna kuning.
+
+2. saya membuat halaman utama menjadi lebih menarik dan mengikuti tema website saya.
+    - Jika tidak terdapat produk maka akan menampilkan:
+    ![alt text](127.0.0.1_8000_.png)
+    ![alt text](<127.0.0.1_8000_(iPhone XR).png>)
+    web ini sudah responsive untuk perangkat mobile dan desktop dan pada saat tidak ada produk maka akan menampilkan tulisan "belum ada data product pada Vintazen" dan memberikan animasi pada gambar
+    - Jika terdapat produk maka akan menampilkan:
+    ![alt text](<127.0.0.1_8000_(iPhone XR) (1).png>)
+    ![alt text](<127.0.0.1_8000_ (1).png>)
+    dan web ini sudah responsive untuk perangkat mobile dan desktop dan pada saat terdapat produk maka akan menampilkan produk yang sudah di tambahkan dan dapat di delete dalam bentuk card
+
+3. Saya juga membuat 2 logo pada bagian atas kanan dari card product untuk mengapus dan mengedit produk yang sudah di tambahkan
+![alt text](<127.0.0.1_8000_(iPhone XR) (1).png>)
+    ![alt text](<127.0.0.1_8000_ (1).png>)
+
+4. Pada bagian navbar saya sudah membuatnya menjadi responsive dan menyesuaikan dengan perangkat yang digunakan dan menambahkan beberapa fitur seperti logout dan beberapa fitur lainnya yang belum saya implementasikan
+![alt text](<127.0.0.1_8000_ (2).png>)
+![alt text](<127.0.0.1_8000_(iPhone XR) (2).png>)
+
+
+
 
 
 

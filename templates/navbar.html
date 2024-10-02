@@ -1,0 +1,95 @@
+{% load static %}
+
+<nav class="bg-gradient-to-r from-black via-gray-900 to-black shadow-lg fixed top-0 left-0 z-50 w-full transition-all duration-300 ease-in-out">
+  <div class="max-w-13xl mx-auto px-8 sm:px-10 lg:px-12">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo and Title -->
+      <div class="flex items-center space-x-4">
+        <!-- Logo -->
+        <a href="#">
+          <img src="{% static 'image/logo.png' %}" alt="Logo" class="h-14 w-auto">
+        </a>
+        <!-- Title -->
+        <a>
+          <span class="text-2xl font-bold text-yellow-400 hover:text-yellow-500 transition duration-300">Vintazen</span>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation Links -->
+      <div class="hidden md:flex space-x-6 items-center">
+        <a href="#" class="relative text-gray-300 hover:text-yellow-400 transition duration-300 ease-in-out">Home
+          <span class="absolute inset-x-0 bottom-0 h-0.5 bg-yellow-400 transform scale-x-0 hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+        </a>
+        <a href="#" class="relative text-gray-300 hover:text-yellow-400 transition duration-300 ease-in-out">Products
+          <span class="absolute inset-x-0 bottom-0 h-0.5 bg-yellow-400 transform scale-x-0 hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+        </a>
+        <a href="#" class="relative text-gray-300 hover:text-yellow-400 transition duration-300 ease-in-out">About
+          <span class="absolute inset-x-0 bottom-0 h-0.5 bg-yellow-400 transform scale-x-0 hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+        </a>
+        <a href="#" class="relative text-gray-300 hover:text-yellow-400 transition duration-300 ease-in-out">Contact
+          <span class="absolute inset-x-0 bottom-0 h-0.5 bg-yellow-400 transform scale-x-0 hover:scale-x-100 transition-transform duration-300 ease-out"></span>
+        </a>
+        {% if user.is_authenticated %}
+          <span class="text-gray-300">Welcome, {{ user.username }}</span>
+          <a href="{% url 'main:logout' %}" class="bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded-md transition duration-300 ease-in-out">
+            Logout
+          </a>
+        {% else %}
+          <a href="{% url 'main:login' %}" class="bg-yellow-400 hover:bg-yellow-500 text-black py-2 px-4 rounded-md transition duration-300 ease-in-out">
+            Login
+          </a>
+          <a href="{% url 'main:register' %}" class="bg-yellow-400 hover:bg-yellow-500 text-black py-2 px-4 rounded-md transition duration-300 ease-in-out">
+            Register
+          </a>
+        {% endif %}
+      </div>
+
+      <!-- Hamburger Menu for Mobile -->
+      <div class="md:hidden flex items-center">
+        <button class="mobile-menu-button">
+          <svg class="w-6 h-6 text-white" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+            <path class="menu-icon" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation Menu (Initially Hidden) -->
+  <div class="mobile-menu hidden md:hidden">
+    <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800">Home</a>
+    <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800">Products</a>
+    <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800">About</a>
+    <a href="#" class="block px-4 py-2 text-sm text-gray-300 hover:bg-gray-800">Contact</a>
+    {% if user.is_authenticated %}
+      <span class="block px-4 py-2 text-sm text-gray-300">Welcome, {{ user.username }}</span>
+      <a href="{% url 'main:logout' %}" class="block bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 text-center transition duration-300">
+        Logout
+      </a>
+    {% else %}
+      <a href="{% url 'main:login' %}" class="block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 text-center transition duration-300">
+        Login
+      </a>
+      <a href="{% url 'main:register' %}" class="block bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-2 px-4 text-center transition duration-300">
+        Register
+      </a>
+    {% endif %}
+  </div>
+
+  <!-- Script for Hamburger Menu Toggle with Animation -->
+  <script>
+    const btn = document.querySelector("button.mobile-menu-button");
+    const menu = document.querySelector(".mobile-menu");
+    const menuIcon = document.querySelector(".menu-icon");
+
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+      // Animate the hamburger icon to an "X"
+      if(menu.classList.contains('hidden')) {
+        menuIcon.setAttribute('d', 'M4 6h16M4 12h16M4 18h16'); // Icon for Menu
+      } else {
+        menuIcon.setAttribute('d', 'M6 18L18 6M6 6l12 12'); // Icon for Close (X)
+      }
+    });
+  </script>
+</nav>

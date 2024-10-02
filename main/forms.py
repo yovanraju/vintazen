@@ -4,4 +4,5 @@ from main.models import ProductEntry
 class ProductEntryForm(ModelForm):
     class Meta:
         model = ProductEntry
-        fields = ["name", "price", "description"]
+        fields = ["name", "description", "price", 'image']
+        # Perubahan: Menambahkan field 'image' ke dalam daftar fields

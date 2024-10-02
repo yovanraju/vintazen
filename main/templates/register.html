@@ -1,32 +1,67 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block meta %}
 <title>Register</title>
 {% endblock meta %}
 
 {% block content %}
+<div class="min-h-screen flex items-center justify-center bg-black py-12 px-4 sm:px-6 lg:px-8">
+  <div class="max-w-md w-full space-y-8">
+    <div class="text-center">
+      <!-- Perubahan: Menambahkan logo skeleton di bagian atas -->
+      <img src="{% static 'image/logo.png' %}" alt="Logo" alt="Skeleton logo" class="mx-auto h-20 w-20 rounded-full border-4 border-white">
+      <h2 class="mt-6 text-center text-3xl font-extrabold text-white">
+        Create your account, Vintazen!
+      </h2>
+    </div>
+    <form class="mt-8 space-y-6" method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="remember" value="true">
+      
+      <!-- Perubahan: Menyesuaikan input agar sesuai dengan gaya form login -->
+      <div class="rounded-md shadow-sm -space-y-px">
+        <div>
+          <label for="username" class="sr-only">Username</label>
+          <input id="username" name="username" type="text" required class="appearance-none rounded-t-md relative block w-full px-3 py-2 border border-gray-700 placeholder-gray-500 text-white bg-black focus:outline-none focus:ring-yellow-400 focus:border-yellow-400 focus:z-10 sm:text-sm" placeholder="Username">
+        </div>
+        <div>
+          <label for="password" class="sr-only">Password</label>
+          <input id="password" name="password" type="password" required class="appearance-none relative block w-full px-3 py-2 border border-gray-700 placeholder-gray-500 text-white bg-black focus:outline-none focus:ring-yellow-400 focus:border-yellow-400 focus:z-10 sm:text-sm" placeholder="Password">
+        </div>
+        <div>
+          <label for="password_confirmation" class="sr-only">Password confirmation</label>
+          <input id="password_confirmation" name="password_confirmation" type="password" required class="appearance-none rounded-b-md relative block w-full px-3 py-2 border border-gray-700 placeholder-gray-500 text-white bg-black focus:outline-none focus:ring-yellow-400 focus:border-yellow-400 focus:z-10 sm:text-sm" placeholder="Password confirmation">
+        </div>
+      </div>
 
-<div class="login">
-  <h1>Register</h1>
+      <div>
+        <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-black bg-yellow-400 hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-400">
+          Register
+        </button>
+      </div>
+    </form>
 
-  <form method="POST">
-    {% csrf_token %}
-    <table>
-      {{ form.as_table }}
-      <tr>
-        <td></td>
-        <td><input type="submit" name="submit" value="Daftar" /></td>
-      </tr>
-    </table>
-  </form>
+    <!-- Perubahan: Menambahkan bagian untuk menampilkan pesan kesalahan -->
+    {% if messages %}
+    <div class="mt-4">
+      {% for message in messages %}
+      <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+        <span class="block sm:inline">{{ message }}</span>
+      </div>
+      {% endfor %}
+    </div>
+    {% endif %}
 
-  {% if messages %}
-  <ul>
-    {% for message in messages %}
-    <li>{{ message }}</li>
-    {% endfor %}
-  </ul>
-  {% endif %}
+    <!-- Perubahan: Menambahkan tautan ke halaman login -->
+    <div class="text-center mt-4">
+      <p class="text-sm text-white">
+        Already have an account?
+        <a href="{% url 'main:login' %}" class="font-medium text-yellow-400 hover:text-yellow-300">
+          Login here
+        </a>
+      </p>
+    </div>
+  </div>
 </div>
-
 {% endblock content %}

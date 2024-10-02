@@ -6,6 +6,10 @@ class ProductEntry(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255)
-    price = models.IntegerField()
     description = models.TextField()
-    
+    price = models.IntegerField()
+    time = models.DateTimeField(auto_now_add=True)
+    # Perubahan: Menambahkan field 'image' untuk menyimpan gambar produk
+    # Sekarang: Menambahkan ImageField dengan opsi upload_to, blank, dan null
+    image = models.ImageField(upload_to='product_images/', blank=True, null=True)
+
