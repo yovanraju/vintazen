@@ -10,7 +10,17 @@
 
 [![link](https://img.shields.io/badge/Link_di_Samping-Klik_di_Sini-red?labelColor=blue)](http://yovan-raju-vintazen.pbp.cs.ui.ac.id/)
 
+## Daftar Isi
+- [Tugas 2](#tugas-2)
+- [Tugas 3](#tugas-3)
+- [Tugas 4](#tugas-4)
+- [Tugas 5](#tugas-5)
+
 # TUGAS 2
+
+<details>
+<summary>Klik untuk melihat detail Tugas 2</summary>
+
 ## JAWABAN
 
 ### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial).
@@ -78,7 +88,12 @@
     Dengan django memungkinkan progammer dapat mengakses database menggunakan objek Python, itu membuat Django dapat disebut dengan ORM. Dalam Django mode adalah representasi dari tabel dalam basis data dan setiap model tersebut tertulis sebagai kelas Python. ORM ini memungkinkan pengembang untuk melakukan operasi Create, Read, Update, Delete pada data di database dengan menggunakan bahasa pemrograman Python.Dengan ORM  membuat pengelolaan database menjadi lebih intuitif dan terintegrasi langsung dengan kode, tanpa perlu menulis SQL manual. Dengan alasan itulah mengapa Django dapat disebut sebagai ORM.
 </div>
 
+</details>
+
 # TUGAS 3
+
+<details>
+<summary>Klik untuk melihat detail Tugas 3</summary>
 
 ## Jelaskan mengapa kita memerlukan data delivery dalam pengimplementasian sebuah platform?
 
@@ -201,7 +216,12 @@ Dengan langkah-langkah di atas, saya berhasil membuat form input, menampilkan da
 
 ![alt text](<Screenshot 2024-09-18 104710.png>) ![alt text](<Screenshot 2024-09-18 104902.png>) ![alt text](<Screenshot 2024-09-18 104828.png>) ![alt text](<Screenshot 2024-09-18 104753.png>)
 
+</details>
+
 # TUGAS 4
+
+<details>
+<summary>Klik untuk melihat detail Tugas 4</summary>
 
 ## Apa perbedaan antara `HttpResponseRedirect()` dan `redirect()`
 
@@ -423,7 +443,12 @@ Django mengingat pengguna yang telah login dengan session. Jadi saat pengguna lo
                 response.delete_cookie('last_login')
                 return response
 
+</details>
+
 # Tugas 5
+
+<details>
+<summary>Klik untuk melihat detail Tugas 5</summary>
 
 ###### Jika terdapat beberapa CSS selector untuk suatu elemen HTML, jelaskan urutan prioritas pengambilan CSS selector tersebut!
 Ketika elemen HTML memiliki beberapa CSS selector, aturan yang diterapkan bergantung pada spesifisitas dan urutan penulisan CSS. Berikut urutan prioritas dari yang terendah hingga tertinggi:
@@ -530,7 +555,152 @@ jadi saya membuat logo dan mengatur posisi dari form register untuk berada pada 
 ![alt text](<127.0.0.1_8000_ (2).png>)
 ![alt text](<127.0.0.1_8000_(iPhone XR) (2).png>)
 
+</details>
 
+# TUGAS 6
+
+<details>
+<summary>Klik untuk melihat detail Tugas 6</summary>
+
+## JAWABAN
+
+### Jelaskan manfaat dari penggunaan JavaScript dalam pengembangan aplikasi web!
+
+JavaScript memiliki beberapa manfaat penting dalam pengembangan aplikasi web:
+
+1. Interaktivitas Dinamis: JavaScript memungkinkan manipulasi halaman web secara dinamis, meningkatkan interaksi antara pengguna dan halaman web. Ini membuat aplikasi web lebih responsif dan user-friendly.
+
+2. Client-side Processing: Sebagai bahasa client-side, JavaScript mengurangi beban server dengan memproses beberapa tugas di sisi klien (browser pengguna).
+
+3. Validasi Form: JavaScript dapat melakukan validasi data form sebelum dikirim ke server, meningkatkan user experience dan mengurangi beban server.
+
+4. Manipulasi DOM: Dengan JavaScript, pengembang dapat memanipulasi struktur, gaya, dan konten halaman web secara dinamis melalui DOM (Document Object Model).
+
+5. Asynchronous Programming: JavaScript mendukung pemrograman asinkron, memungkinkan aplikasi web untuk melakukan operasi tanpa menghentikan eksekusi kode lainnya.
+
+6. Cross-platform Compatibility: JavaScript berjalan di hampir semua browser modern, memastikan kompatibilitas lintas platform untuk aplikasi web.
+
+7. Rich User Interfaces: JavaScript memungkinkan pembuatan antarmuka pengguna yang kaya dan interaktif, meningkatkan pengalaman pengguna secara keseluruhan.
+
+8. Event Handling: JavaScript dapat merespon berbagai event pengguna seperti klik mouse, input keyboard, dll., membuat aplikasi web lebih responsif.
+
+9. AJAX : JavaScript memungkinkan penggunaan AJAX untuk memperbarui bagian tertentu dari halaman web tanpa harus me-reload seluruh halaman.
+
+10. Ekstensibilitas: Dengan banyaknya library dan framework JavaScript yang tersedia, pengembang dapat memperluas fungsionalitas aplikasi web dengan mudah.
+
+### Jelaskan fungsi dari penggunaan await ketika kita menggunakan fetch()! Apa yang akan terjadi jika kita tidak menggunakan await?
+
+Penggunaan await dalam konteks fetch() memiliki beberapa fungsi penting:
+
+1. Sinkronisasi Asinkron: await memungkinkan kode asinkron berjalan secara sekuensial, membuat kode lebih mudah dibaca dan dipahami.
+
+2. Menunggu Resolusi Promise: await menunda eksekusi kode selanjutnya sampai Promise yang dikembalikan oleh `fetch()` selesai atau gagal.
+
+3. Penanganan Error: Memungkinkan penggunaan blok try-catch untuk menangani error dalam operasi asinkron dengan cara yang lebih alami.
+
+Jika kita tidak menggunakan await saat memanggil fetch():
+
+1. Eksekusi Non-Blocking: Kode akan terus berjalan tanpa menunggu respons dari `fetch()`, yang bisa menyebabkan masalah jika kode selanjutnya bergantung pada hasil `fetch()`.
+
+2. Penanganan Promise: Kita harus menggunakan metode `.then()` dan `.catch()` untuk menangani hasil atau error dari Promise, yang bisa membuat kode lebih sulit dibaca jika ada banyak operasi asinkron berurutan.
+
+3. Kompleksitas Kode: Kode bisa menjadi lebih kompleks dan sulit dipelihara, terutama ketika ada banyak operasi asinkron yang perlu dikoordinasikan.
+
+### Mengapa kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST?
+
+Kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk AJAX POST karena:
+
+1. CSRF Protection: Django secara default menggunakan CSRF protection untuk semua view yang menerima POST request. Ini berarti setiap form POST harus menyertakan CSRF token.
+
+2. AJAX Requests: Ketika melakukan AJAX POST request, terutama dari domain yang berbeda atau dari aplikasi single-page, seringkali sulit atau tidak praktis untuk menyertakan CSRF token dalam setiap request.
+
+3. Bypass CSRF Check: Decorator csrf_exempt memungkinkan view tertentu untuk membypass pengecekan CSRF token. Ini berguna untuk endpoint API atau view yang memang dirancang untuk menerima POST request tanpa CSRF token.
+
+4. Fleksibilitas: Dalam beberapa kasus, seperti ketika mengembangkan API atau ketika keamanan ditangani dengan cara lain, CSRF protection mungkin tidak diperlukan atau bahkan bisa mengganggu fungsionalitas yang diinginkan.
+
+5. Kompatibilitas: Beberapa framework JavaScript atau library AJAX mungkin tidak secara otomatis menangani CSRF token, sehingga menggunakan csrf_exempt bisa menjadi solusi cepat untuk memastikan kompatibilitas.
+
+### Pada tutorial PBP minggu ini, pembersihan data input pengguna dilakukan di belakang (backend) juga. Mengapa hal tersebut tidak dilakukan di frontend saja?
+
+1. Keamanan: Data input pengguna harus divalidasi dan diperbaiki di backend untuk memastikan bahwa data yang diterima aman dan sesuai dengan format yang diharapkan.
+
+2. Validasi: Validasi data input pengguna harus dilakukan di backend untuk memastikan bahwa data yang diterima valid dan sesuai dengan format yang diharapkan.
+
+### Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas secara step-by-step (bukan hanya sekadar mengikuti tutorial)! 
+
+1. Mengubah kode cards data mood untuk mendukung AJAX GET:
+
+Anda telah mengimplementasikan ini dalam fungsi `getProductEntries()` di `main.html`:
+
+        async function getProductEntries() {
+            return fetch("{% url 'main:show_json' %}").then((res) => res.json())
+        }
+
+Fungsi ini mengambil data produk dalam format JSON menggunakan AJAX GET.
+
+2. Pengambilan data mood menggunakan AJAX GET untuk pengguna yang logged-in:
+
+Di views.py, fungsi `show_json()` sudah memastikan bahwa hanya data milik pengguna yang sedang login yang diambil:
+
+        def show_json(request):
+            data = Product.objects.filter(user=request.user)
+            return HttpResponse(serializers.serialize('json', data), content_type='application/json')
+
+3. Tombol untuk membuka modal dengan form untuk menambahkan mood:
+
+Anda telah mengimplementasikan ini dengan tombol "Add New Product Entry" di `main.html`:
+
+        <button data-modal-target="crudModal" data-modal-toggle="crudModal" class="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold py-2 px-6 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 shadow-lg" onclick="showModal();">
+            Add New Product Entry
+        </button>
+
+Modal ini sudah memenuhi persyaratan yang diminta, termasuk membersihkan form setelah penambahan berhasil dan menampilkan pesan error jika gagal.
+
+4. Fungsi view baru untuk menambahkan mood baru:
+Anda telah membuat fungsi `add_product_entry_ajax()` di `views.py`:
+
+        def add_product_entry_ajax(request):
+            if request.method == 'POST':
+                nama_produk = request.POST.get('nama_produk')
+                harga_produk = request.POST.get('harga_produk')
+                deskripsi_produk = request.POST.get('deskripsi_produk')
+                user = request.user
+                Product.objects.create(nama_produk=nama_produk, harga_produk=harga_produk, deskripsi_produk=deskripsi_produk, user=user)
+                return HttpResponse(b"CREATED", status=201)
+                
+5. Path /create-ajax/:
+
+Anda telah menambahkan path ini di `urls.py`:
+
+        path('create-ajax/', add_product_entry_ajax, name='add_product_entry_ajax'),
+
+6. Menghubungkan form di modal ke path /create-ajax/:
+Ini sudah diimplementasikan dalam fungsi `addProductEntry()` di `main.html`:
+
+        function addProductEntry() {
+            const form = document.getElementById('productEntryForm');
+            const formData = new FormData(form);
+
+            fetch("{% url 'main:add_product_entry_ajax' %}", {
+            method: "POST",
+            body: formData,
+            })
+            // ... (kode lainnya)
+        }
+
+7. Refresh halaman utama secara asinkronus:
+Anda telah mengimplementasikan ini dalam fungsi `refreshProductEntries()` di `main.html`:
+
+        async function refreshProductEntries() {
+            const productEntries = await getProductEntries()
+            let htmlString = ``
+            productEntries.forEach((item) => {
+            // ...
+            })
+            document.getElementById("product_entry_cards").innerHTML = htmlString
+        }
+
+Fungsi ini dipanggil setelah penambahan produk berhasil, memperbarui daftar produk tanpa me-reload seluruh halaman.
 
 
 
