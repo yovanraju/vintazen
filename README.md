@@ -631,7 +631,7 @@ Kita perlu menggunakan decorator csrf_exempt pada view yang akan digunakan untuk
 
 1. Mengubah kode cards data mood untuk mendukung AJAX GET:
 
-Anda telah mengimplementasikan ini dalam fungsi `getProductEntries()` di `main.html`:
+Ini sudah diimplementasikan di fungsi `getProductEntries()` di `main.html`:
 
         async function getProductEntries() {
             return fetch("{% url 'main:show_json' %}").then((res) => res.json())
@@ -641,7 +641,7 @@ Fungsi ini mengambil data produk dalam format JSON menggunakan AJAX GET.
 
 2. Pengambilan data mood menggunakan AJAX GET untuk pengguna yang logged-in:
 
-Di views.py, fungsi `show_json()` sudah memastikan bahwa hanya data milik pengguna yang sedang login yang diambil:
+Di views.py, fungsi `show_json()` sudah memastikan bahwa hanya data milik user yang sedang login yang diambil:
 
         def show_json(request):
             data = Product.objects.filter(user=request.user)
@@ -649,7 +649,7 @@ Di views.py, fungsi `show_json()` sudah memastikan bahwa hanya data milik penggu
 
 3. Tombol untuk membuka modal dengan form untuk menambahkan mood:
 
-Anda telah mengimplementasikan ini dengan tombol "Add New Product Entry" di `main.html`:
+Ini sudah diimplementasikan dengan tombol "Add New Product Entry" di `main.html`:
 
         <button data-modal-target="crudModal" data-modal-toggle="crudModal" class="bg-gradient-to-r from-yellow-400 to-yellow-500 hover:from-yellow-500 hover:to-yellow-600 text-black font-bold py-2 px-6 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105 shadow-lg" onclick="showModal();">
             Add New Product Entry
@@ -658,7 +658,7 @@ Anda telah mengimplementasikan ini dengan tombol "Add New Product Entry" di `mai
 Modal ini sudah memenuhi persyaratan yang diminta, termasuk membersihkan form setelah penambahan berhasil dan menampilkan pesan error jika gagal.
 
 4. Fungsi view baru untuk menambahkan mood baru:
-Anda telah membuat fungsi `add_product_entry_ajax()` di `views.py`:
+Ini sudah diimplementasikan di fungsi `add_product_entry_ajax()` di `views.py`:
 
         def add_product_entry_ajax(request):
             if request.method == 'POST':
@@ -671,12 +671,12 @@ Anda telah membuat fungsi `add_product_entry_ajax()` di `views.py`:
                 
 5. Path /create-ajax/:
 
-Anda telah menambahkan path ini di `urls.py`:
+kita telah menambahkan path ini di `urls.py`:
 
         path('create-ajax/', add_product_entry_ajax, name='add_product_entry_ajax'),
 
 6. Menghubungkan form di modal ke path /create-ajax/:
-Ini sudah diimplementasikan dalam fungsi `addProductEntry()` di `main.html`:
+Ini sudah diimplementasikan di fungsi `addProductEntry()` di `main.html`:
 
         function addProductEntry() {
             const form = document.getElementById('productEntryForm');
@@ -686,11 +686,11 @@ Ini sudah diimplementasikan dalam fungsi `addProductEntry()` di `main.html`:
             method: "POST",
             body: formData,
             })
-            // ... (kode lainnya)
+            // ...
         }
 
 7. Refresh halaman utama secara asinkronus:
-Anda telah mengimplementasikan ini dalam fungsi `refreshProductEntries()` di `main.html`:
+Ini sudah diimplementasikan di fungsi `refreshProductEntries()` di `main.html`:
 
         async function refreshProductEntries() {
             const productEntries = await getProductEntries()
@@ -701,7 +701,7 @@ Anda telah mengimplementasikan ini dalam fungsi `refreshProductEntries()` di `ma
             document.getElementById("product_entry_cards").innerHTML = htmlString
         }
 
-Fungsi ini dipanggil setelah penambahan produk berhasil, memperbarui daftar produk tanpa me-reload seluruh halaman.
+Fungsi ini dipanggil setelah penambahan produk berhasil, memperbarui daftar produk tanpa me-reload web.
 
 
 
